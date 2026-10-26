@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cineteca</title>
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main style="max-width:380px;padding-top:12vh;text-align:center">
+  <img src="icon.svg" alt="" style="width:72px;margin:0 auto 16px">
+  <h1>Cineteca</h1>
+  <p class="muted">Enter the PIN shown in Devices &amp; Settings on the computer running Cineteca.</p>
+  <form id="f" class="row" style="justify-content:center;margin-top:20px">
+    <input id="pin" type="password" inputmode="numeric" autocomplete="current-password" placeholder="PIN" required autofocus style="font-size:22px;text-align:center;width:180px">
+    <button class="btn primary">Unlock</button>
+  </form>
+  <p id="msg" class="status"></p>
+</main>
+<script>
+document.getElementById('f').addEventListener('submit', async e => {
+  e.preventDefault();
+  const msg = document.getElementById('msg');
+  msg.textContent = 'Checking...';
+  const r = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ pin: document.getElementById('pin').value }) });
+  if (r.ok) location.replace('/');
+  else msg.textContent = 'Wrong PIN, try again.';
+});
+</script>
+</body>
+</html>

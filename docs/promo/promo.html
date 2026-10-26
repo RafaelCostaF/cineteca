@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cineteca promo</title>
+<style>
+  /* 1280x720 promo, 22 s. Rendered frame by frame by render.js (animations are paused and seeked). */
+  :root { --bg: #0d1017; --panel: #161b25; --line: #2a3344; --text: #e9edf5; --muted: #98a3b8; --accent: #e5a50a; --ink: #1a1300; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; background: var(--bg); color: var(--text);
+    font-family: Inter, "Segoe UI", system-ui, sans-serif; }
+  body::before { content: ""; position: absolute; inset: 0;
+    background: radial-gradient(900px 500px at 85% 110%, #e5a50a22, transparent 60%), radial-gradient(700px 400px at 0% 0%, #3b82f61a, transparent 60%); }
+  .scene { position: absolute; inset: 0; display: flex; align-items: center; gap: 56px; padding: 0 80px; opacity: 0;
+    animation: scene var(--len) linear var(--at) both; }
+  @keyframes scene { 0% { opacity: 0 } 8% { opacity: 1 } 92% { opacity: 1 } 100% { opacity: 0 } }
+  .in { opacity: 0; animation: rise .7s cubic-bezier(.2,.8,.2,1) calc(var(--at) + var(--d, .15s)) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
+  .copy { flex: 0 0 430px; }
+  .num { font: 700 20px/1 ui-monospace, monospace; color: var(--accent); letter-spacing: .1em; }
+  h1 { font-size: 56px; line-height: 1.05; letter-spacing: -.02em; margin-top: 16px; }
+  h1 em { font-style: normal; color: var(--accent); }
+  p { font-size: 24px; line-height: 1.4; color: var(--muted); margin-top: 20px; }
+  .shot { flex: 1; height: 470px; border-radius: 16px; border: 1px solid var(--line); overflow: hidden;
+    box-shadow: 0 30px 80px #000a; background: var(--panel) left top / 1000px auto no-repeat; }
+  .shot.in { animation-name: shot; animation-duration: 3.4s; }
+  @keyframes shot { 0% { opacity: 0; transform: translateX(60px) scale(.96) } 20% { opacity: 1; transform: none } 100% { opacity: 1; transform: scale(1.04) } }
+  .center { flex-direction: column; justify-content: center; text-align: center; gap: 0; }
+  .logo { width: 120px; height: 120px; }
+  .big { font-size: 96px; margin-top: 24px; }
+  .card { flex: 1; height: 470px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel);
+    padding: 48px; display: flex; flex-direction: column; justify-content: center; gap: 28px; box-shadow: 0 30px 80px #000a; }
+  .bar { height: 22px; border-radius: 11px; background: #2a3344; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--accent); animation: fill 3s ease-out calc(var(--at) + .4s) both; }
+  @keyframes fill { to { width: 100% } }
+  .play { display: flex; align-items: center; gap: 20px; font-size: 28px; font-weight: 600; }
+  .play b { width: 72px; height: 72px; border-radius: 50%; background: var(--accent); color: var(--ink); display: grid; place-items: center; font-size: 30px; }
+  .row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .chip { padding: 14px 24px; border-radius: 999px; border: 1px solid var(--line); font: 600 26px/1 ui-monospace, monospace; }
+  .chip.ok { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+  .arrow { font-size: 44px; color: var(--accent); text-align: center; }
+  .cta { margin-top: 40px; display: inline-block; padding: 20px 40px; border-radius: 14px; background: var(--accent); color: var(--ink);
+    font-size: 30px; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<section class="scene center" style="--at:0s;--len:3s">
+  <img class="logo in" src="icon.svg" alt="">
+  <h1 class="big in" style="--d:.35s">Cineteca</h1>
+  <p class="in" style="--d:.6s">Your private cinema. Every screen in your home.</p>
+</section>
+
+<section class="scene" style="--at:3s;--len:3.2s">
+  <div class="copy">
+    <div class="num in">01</div>
+    <h1 class="in" style="--d:.25s">Find it in <em>one search</em></h1>
+    <p class="in" style="--d:.4s">Curated classics. No trailers, no junk, no duplicates.</p>
+  </div>
+  <div class="shot in" style="--d:.1s;background-image:url(discover.png)"></div>
+</section>
+
+<section class="scene" style="--at:6.2s;--len:3.2s">
+  <div class="copy">
+    <div class="num in">02</div>
+    <h1 class="in" style="--d:.25s">Press play <em>in seconds</em></h1>
+    <p class="in" style="--d:.4s">Watch while it downloads. Resume where you stopped, on any device.</p>
+  </div>
+  <div class="card in" style="--d:.1s">
+    <div class="play"><b>▶</b> Nosferatu · 1922</div>
+    <div class="bar"><i></i></div>
+    <p style="margin:0">Streaming while downloading · resumes at 47:12</p>
+  </div>
+</section>
+
+<section class="scene" style="--at:9.4s;--len:3.2s">
+  <div class="copy">
+    <div class="num in">03</div>
+    <h1 class="in" style="--d:.25s">Every screen <em>at home</em></h1>
+    <p class="in" style="--d:.4s">Scan the QR on your phone. Smart TVs find it by themselves (DLNA).</p>
+  </div>
+  <div class="shot in" style="--d:.1s;background-image:url(settings.png)"></div>
+</section>
+
+<section class="scene" style="--at:12.6s;--len:3.2s">
+  <div class="copy">
+    <div class="num in">04</div>
+    <h1 class="in" style="--d:.25s">Plays <em>any format</em></h1>
+    <p class="in" style="--d:.4s">MKV, AVI, HEVC 10-bit: converted on the fly. Nothing to install on the TV.</p>
+  </div>
+  <div class="card">
+    <div class="row">
+      <span class="chip in" style="--d:.2s">MKV</span><span class="chip in" style="--d:.35s">AVI</span>
+      <span class="chip in" style="--d:.5s">HEVC 10-bit</span><span class="chip in" style="--d:.65s">5.1 audio</span>
+    </div>
+    <div class="arrow in" style="--d:1s">↓</div>
+    <div class="row" style="justify-content:center"><span class="chip ok in" style="--d:1.3s">Plays everywhere</span></div>
+  </div>
+</section>
+
+<section class="scene" style="--at:15.8s;--len:3.2s">
+  <div class="copy">
+    <div class="num in">05</div>
+    <h1 class="in" style="--d:.25s">Movies, series, anime <em>&amp; books</em></h1>
+    <p class="in" style="--d:.4s">Built-in EPUB reader. One folder. Delete means delete.</p>
+  </div>
+  <div class="shot in" style="--d:.1s;background-image:url(books.png)"></div>
+</section>
+
+<section class="scene center" style="--at:19s;--len:3s">
+  <img class="logo in" src="icon.svg" alt="">
+  <h1 class="big in" style="--d:.3s">Cineteca</h1>
+  <p class="in" style="--d:.5s">Free &amp; open source · Linux, Windows, macOS</p>
+  <div><span class="cta in" style="--d:.8s">github.com/RafaelCostaF/cineteca</span></div>
+</section>
+
+<script>
+  // Called by render.js: pause every animation at time t (seconds).
+  window.seek = t => document.getAnimations().forEach(a => { a.pause(); a.currentTime = t * 1000; });
+  window.DURATION = 22;
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.log
+.env
+# legacy helper scripts from the old Flask catalog
+fiz.sh
+run.sh
+ruuun.sh

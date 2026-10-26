@@ -1,0 +1,30 @@
+{
+  "name": "cineteca",
+  "version": "1.0.0",
+  "description": "Desktop media center that drives qBittorrent in the background: download, organise and stream movies, series, anime and books to every device on your network.",
+  "main": "electron/main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "headless": "node server/index.js",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "epubjs": "^0.3.93",
+    "express": "^4.21.2",
+    "jszip": "^3.10.1",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "io.github.cineteca",
+    "productName": "Cineteca",
+    "files": ["electron/**", "server/**", "public/**", "build/**", "package.json"],
+    "linux": { "target": ["AppImage", "rpm", "deb"], "category": "AudioVideo", "icon": "build/icon.png" },
+    "win": { "target": "nsis", "icon": "build/icon.png" },
+    "mac": { "target": "dmg", "icon": "build/icon.png" }
+  }
+}

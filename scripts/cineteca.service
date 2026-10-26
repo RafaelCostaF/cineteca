@@ -1,0 +1,22 @@
+# systemd user service for running Cineteca without a desktop (home server,
+# Raspberry Pi, NAS). Install with:
+#   mkdir -p ~/.config/systemd/user
+#   cp scripts/cineteca.service ~/.config/systemd/user/
+#   sed -i "s|%REPO%|$PWD|" ~/.config/systemd/user/cineteca.service
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now cineteca
+#   loginctl enable-linger "$USER"   # keep running after you log out
+[Unit]
+Description=Cineteca media server (qBittorrent + streaming)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=%REPO%
+ExecStart=/usr/bin/env node server/index.js
+Restart=on-failure
+KillSignal=SIGTERM
+TimeoutStopSec=20
+
+[Install]
+WantedBy=default.target
